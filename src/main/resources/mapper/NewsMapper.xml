@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="redlib.backend.dao.NewsMapper">
+    <resultMap id="BaseResultMap" type="redlib.backend.model.News">
+        <id column="id" property="id" />
+        <result column="title" property="title" />
+        <result column="content" property="content" />
+        <result column="category_id" property="categoryId" />
+        <result column="create_by" property="createBy" />
+        <result column="update_by" property="updateBy" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, title, content, category_id, create_by, update_by, create_time, update_time
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM news
+        WHERE id = #{id}
+    </select>
+
+    <insert id="insert" parameterType="redlib.backend.model.News" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO news (title, content, category_id, create_by, update_by)
+        VALUES (#{title}, #{content}, #{categoryId}, #{createBy}, #{updateBy})
+    </insert>
+
+    <update id="updateByPrimaryKey" parameterType="redlib.backend.model.News">
+        UPDATE news
+        SET title = #{title},
+            content = #{content},
+            category_id = #{categoryId},
+            update_by = #{updateBy}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteByPrimaryKey">
+        DELETE FROM news
+        WHERE id = #{id}
+    </delete>
+
+    <select id="selectByCondition" resultMap="BaseResultMap">
+        SELECT n.<include refid="Base_Column_List" />
+        FROM news n
+        <where>
+            <if test="title != null and title != ''">
+                AND n.title LIKE CONCAT('%', #{title}, '%')
+            </if>
+            <if test="categoryId != null">
+                AND n.category_id = #{categoryId}
+            </if>
+            <if test="startTime != null">
+                AND n.create_time >= #{startTime}
+            </if>
+            <if test="endTime != null">
+                AND n.create_time &lt;= #{endTime}
+            </if>
+        </where>
+        ORDER BY n.create_time DESC
+        <if test="offset != null and limit != null">
+            LIMIT #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="countByCondition" resultType="int">
+        SELECT COUNT(*)
+        FROM news n
+        <where>
+            <if test="title != null and title != ''">
+                AND n.title LIKE CONCAT('%', #{title}, '%')
+            </if>
+            <if test="categoryId != null">
+                AND n.category_id = #{categoryId}
+            </if>
+            <if test="startTime != null">
+                AND n.create_time >= #{startTime}
+            </if>
+            <if test="endTime != null">
+                AND n.create_time &lt;= #{endTime}
+            </if>
+        </where>
+    </select>
+
+    <update id="updateCategoryIdBatch">
+        UPDATE news
+        SET category_id = #{newCategoryId},
+            update_by = #{updateBy}
+        WHERE category_id = #{oldCategoryId}
+    </update>
+</mapper>

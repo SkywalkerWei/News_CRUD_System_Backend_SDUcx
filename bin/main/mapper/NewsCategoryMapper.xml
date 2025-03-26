@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="redlib.backend.dao.NewsCategoryMapper">
+    <resultMap id="BaseResultMap" type="redlib.backend.model.NewsCategory">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, name, create_time, update_time
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM news_category
+        WHERE id = #{id}
+    </select>
+
+    <select id="selectByName" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM news_category
+        WHERE name = #{name}
+    </select>
+
+    <select id="selectByNameLike" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM news_category
+        WHERE name LIKE CONCAT('%', #{name}, '%')
+    </select>
+
+    <insert id="insert" parameterType="redlib.backend.model.NewsCategory" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO news_category (name)
+        VALUES (#{name})
+    </insert>
+
+    <update id="updateByPrimaryKey" parameterType="redlib.backend.model.NewsCategory">
+        UPDATE news_category
+        SET name = #{name}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteByPrimaryKey">
+        DELETE FROM news_category
+        WHERE id = #{id}
+    </delete>
+
+    <select id="countNewsByCategory" resultType="int">
+        SELECT COUNT(*)
+        FROM news
+        WHERE category_id = #{categoryId}
+    </select>
+</mapper>

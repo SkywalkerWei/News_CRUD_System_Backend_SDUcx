@@ -121,7 +121,9 @@ public class TokenServiceImpl implements TokenService {
      */
     @Override
     public void logout(String accessToken) {
-
+        if (accessToken != null) {
+            tokenMap.remove(accessToken);
+        }
     }
 
     /**
@@ -142,7 +144,10 @@ public class TokenServiceImpl implements TokenService {
      */
     @Override
     public void kick(String accessToken) {
-
+        Assert.hasText(accessToken, "访问令牌不能为空");
+        Token token = tokenMap.get(accessToken);
+        Assert.notNull(token, "用户未登录或会话已过期");
+        tokenMap.remove(accessToken);
     }
 
     private String makeToken() {

@@ -8,7 +8,7 @@ import redlib.backend.service.NewsCategoryService;
 import redlib.backend.model.Result;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import java.util.List;
 
 @Tag(name = "新闻栏目管理", description = "新闻栏目的增删改查接口")

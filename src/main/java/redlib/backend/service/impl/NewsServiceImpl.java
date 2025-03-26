@@ -13,7 +13,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import java.util.List;
 
 @Service
@@ -79,7 +79,7 @@ public class NewsServiceImpl implements NewsService {
     public News getNews(Long id) {
         return newsMapper.selectByPrimaryKey(id);
     }
-    
+
     @Override
     public Page<News> queryNews(NewsQueryDTO queryDTO) {
         List<News> list = newsMapper.selectByCondition(queryDTO);

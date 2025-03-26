@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
+import redlib.backend.exception.BusinessException;
 import redlib.backend.model.ResponseData;
 
 import java.util.LinkedHashMap;
@@ -41,6 +42,10 @@ public class MyControllerAdvice implements ResponseBodyAdvice<Object> {
         ResponseData responseData = new ResponseData();
         if (ex instanceof HttpRequestMethodNotSupportedException) {
             throw new RuntimeException(ex);
+        } else if (ex instanceof BusinessException) {
+            BusinessException businessException = (BusinessException) ex;
+            responseData.setCode(businessException.getCode());
+            log.debug("Business Error:", ex);
         } else {
             responseData.setCode(1000);
             log.debug("Error:", ex);

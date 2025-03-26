@@ -24,9 +24,6 @@ public class NewsController {
     @Operation(summary = "创建新闻")
     @PostMapping
     public Result<News> createNews(@Validated @RequestBody NewsDTO newsDTO) {
-        if (newsDTO == null) {
-            return Result.error("新闻数据不能为空");
-        }
         // TODO: 从SecurityContext中获取当前用户
         String operator = "admin";
         return Result.success(newsService.createNews(newsDTO, operator));
@@ -36,12 +33,6 @@ public class NewsController {
     @PutMapping("/{id}")
     public Result<Void> updateNews(@Parameter(description = "新闻ID") @PathVariable Long id, 
                                  @Validated @RequestBody NewsDTO newsDTO) {
-        if (id == null) {
-            return Result.error("新闻ID不能为空");
-        }
-        if (newsDTO == null) {
-            return Result.error("新闻数据不能为空");
-        }
         newsDTO.setId(id);
         // TODO: 从SecurityContext中获取当前用户
         String operator = "admin";
@@ -52,9 +43,6 @@ public class NewsController {
     @Operation(summary = "删除新闻")
     @DeleteMapping("/{id}")
     public Result<Void> deleteNews(@Parameter(description = "新闻ID") @PathVariable Long id) {
-        if (id == null) {
-            return Result.error("新闻ID不能为空");
-        }
         newsService.deleteNews(id);
         return Result.success();
     }
@@ -62,18 +50,12 @@ public class NewsController {
     @Operation(summary = "获取新闻详情")
     @GetMapping("/{id}")
     public Result<News> getNews(@Parameter(description = "新闻ID") @PathVariable Long id) {
-        if (id == null) {
-            return Result.error("新闻ID不能为空");
-        }
         return Result.success(newsService.getNews(id));
     }
     
     @Operation(summary = "查询新闻列表", description = "支持按标题、栏目、创建时间等条件分页查询")
     @GetMapping
     public Result<Page<News>> queryNews(@Validated NewsQueryDTO queryDTO) {
-        if (queryDTO == null) {
-            return Result.error("查询参数不能为空");
-        }
         return Result.success(newsService.queryNews(queryDTO));
     }
 }

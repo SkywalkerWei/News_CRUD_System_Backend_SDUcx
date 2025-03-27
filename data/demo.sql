@@ -69,7 +69,7 @@ INSERT INTO `admin_priv` VALUES ('3', '3', 'admin', 'delete');
 DROP TABLE IF EXISTS `department`;
 CREATE TABLE `department` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `department_name` varchar(50) DEFAULT NULL COMMENT '部门名称',
+  `department_name` varchar(50) DEFAULT NULL COMMENT '权限组',
   `contact` varchar(50) DEFAULT NULL COMMENT '联系人',
   `contact_phone` varchar(100) DEFAULT NULL COMMENT '联系电话',
   `description` varchar(255) DEFAULT NULL COMMENT '描述',
@@ -84,8 +84,8 @@ CREATE TABLE `department` (
 -- ----------------------------
 -- Records of department
 -- ----------------------------
-INSERT INTO `department` VALUES ('1', '通信所3444', '张三', 'ddd', '这是一条备注', '2019-12-03 17:31:28', '2023-03-03 10:36:23', '1', '1', '0');
-INSERT INTO `department` VALUES ('2', '通信所', '张三', '1532384234234', '这是一条备注', '2019-12-03 17:48:06', '2023-03-03 10:36:29', '1', '1', '0');
+INSERT INTO `department` VALUES ('1', 'aaa', 'ccc', 'ddd', '这是一条备注', '1111-11-11 11:22:33', '1111-11-11 11:22:33', '1', '1', '0');
+INSERT INTO `department` VALUES ('2', 'bbb', 'eee', '12345678901', '这是一条备注', '1111-11-11 11:22:33', '1111-11-11 11:22:33', '1', '1', '0');
 
 -- ----------------------------
 -- Table structure for login_log
@@ -105,5 +105,4 @@ CREATE TABLE `login_log` (
 -- ----------------------------
 -- Records of login_log
 -- ----------------------------
-INSERT INTO `login_log` VALUES ('1', 'root', '127.0.0.1', '管理员', 'Windows 10', 'Chrome 10 108.0.0.0', '2023-01-11 15:45:16');
-INSERT INTO `login_log` VALUES ('2', 'root', '127.0.0.1', '管理员', 'Windows 10', 'Chrome 10 V108.0.0.0', '2023-01-11 15:45:53');
+INSERT INTO `login_log` VALUES ('1', 'root', '127.0.0.1', '管理员', 'Windows 11', 'Chrome 10 108.0.0.0', '1111-11-11 11:22:33');

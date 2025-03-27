@@ -22,3 +22,22 @@ CREATE TABLE IF NOT EXISTS `news` (
   KEY `idx_category` (`category_id`),
   CONSTRAINT `fk_news_category` FOREIGN KEY (`category_id`) REFERENCES `news_category` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='新闻表';
+
+-- 插入新闻分类（如果name已存在则更新）
+INSERT INTO `news_category` (`name`, `create_time`, `update_time`) 
+VALUES ('category', '1111-11-11 11:22:33', '1111-11-11 11:22:33')
+ON DUPLICATE KEY UPDATE 
+  `create_time` = VALUES(`create_time`),
+  `update_time` = VALUES(`update_time`);
+
+-- 插入新闻数据（如果id已存在则更新）
+INSERT INTO `news` (`id`, `title`, `content`, `category_id`, `create_time`, `update_time`, `created_by`, `updated_by`) 
+VALUES (1, 'Title', 'text', 1, '1111-11-11 11:22:33', '1111-11-11 11:22:33', 'aaa', 'aaa')
+ON DUPLICATE KEY UPDATE
+  `title` = VALUES(`title`),
+  `content` = VALUES(`content`),
+  `category_id` = VALUES(`category_id`),
+  `create_time` = VALUES(`create_time`),
+  `update_time` = VALUES(`update_time`),
+  `created_by` = VALUES(`created_by`),
+  `updated_by` = VALUES(`updated_by`);

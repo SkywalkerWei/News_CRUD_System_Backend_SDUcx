@@ -1,9 +1,10 @@
 package redlib.backend.dao;
 
-import org.apache.ibatis.annotations.Param;
-import redlib.backend.model.AdminPriv;
-
 import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
+import redlib.backend.model.AdminPriv;
 
 public interface AdminPrivMapper {
     int deleteByPrimaryKey(Integer id);

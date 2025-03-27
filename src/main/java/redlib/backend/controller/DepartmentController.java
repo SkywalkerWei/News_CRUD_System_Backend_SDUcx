@@ -1,10 +1,21 @@
 package redlib.backend.controller;
 
-import jakarta.servlet.http.HttpServletResponse;
+import java.io.OutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
 import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+
+import jakarta.servlet.http.HttpServletResponse;
 import redlib.backend.annotation.BackendModule;
 import redlib.backend.annotation.Privilege;
 import redlib.backend.dto.DepartmentDTO;
@@ -12,19 +23,6 @@ import redlib.backend.dto.query.DepartmentQueryDTO;
 import redlib.backend.model.Page;
 import redlib.backend.service.DepartmentService;
 import redlib.backend.vo.DepartmentVO;
-
-import java.io.OutputStream;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-
-/**
- * 部门管理后端服务模块
- *
- * @author 李洪文
- * @description
- * @date 2019/12/3 11:07
- */
 
 @RestController
 @RequestMapping("/api/department")

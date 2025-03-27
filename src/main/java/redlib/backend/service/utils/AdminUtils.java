@@ -1,20 +1,15 @@
 package redlib.backend.service.utils;
 
+import java.util.Map;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.util.Assert;
+
 import redlib.backend.dto.AdminDTO;
 import redlib.backend.model.Admin;
 import redlib.backend.utils.FormatUtils;
 import redlib.backend.vo.AdminVO;
 
-import java.util.Map;
-
-/**
- * 描述：
- *
- * @author lihongwen
- * @date 2020/4/8
- */
 public class AdminUtils {
     public static AdminVO convertToBriefVO(Admin item, Map<Integer, String> nameMap) {
         AdminVO vo = new AdminVO();

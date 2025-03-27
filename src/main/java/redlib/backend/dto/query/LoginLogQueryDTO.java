@@ -1,17 +1,12 @@
 package redlib.backend.dto.query;
 
+import java.util.Date;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import java.util.Date;
-
-/**
- * 描述：
- *
- * @author lihongwen
- * @date 2020/4/8
- */
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class LoginLogQueryDTO extends PageQueryDTO {

@@ -1,6 +1,8 @@
 package redlib.backend.config;
 
-import jakarta.annotation.PostConstruct;
+import java.io.File;
+import java.util.concurrent.Executors;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.SchedulingConfigurer;
@@ -9,14 +11,8 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import java.io.File;
-import java.util.concurrent.Executors;
+import jakarta.annotation.PostConstruct;
 
-/**
- * @author 李洪文
- * @description
- * @date 2019/12/12 9:32
- */
 @Configuration
 public class WebConfig implements WebMvcConfigurer, SchedulingConfigurer {
     @Value("${react.debug:false}")
@@ -31,12 +27,7 @@ public class WebConfig implements WebMvcConfigurer, SchedulingConfigurer {
             imageWorkPath = System.getProperty("user.dir") + File.separator + "imageFiles";
         }
     }
-
-    /**
-     * 跨域配置
-     *
-     * @param registry
-     */
+    
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")

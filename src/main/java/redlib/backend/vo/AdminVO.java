@@ -1,15 +1,9 @@
 package redlib.backend.vo;
 
-import lombok.Data;
-
 import java.util.Date;
 
-/**
- * 描述：
- *
- * @author lihongwen
- * @date 2020/4/8
- */
+import lombok.Data;
+
 @Data
 public class AdminVO {
     private Integer id;

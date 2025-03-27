@@ -1,12 +1,15 @@
 package redlib.backend.config;
 
-import lombok.extern.slf4j.Slf4j;
+import java.lang.reflect.Method;
+
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
+
+import lombok.extern.slf4j.Slf4j;
 import redlib.backend.annotation.BackendModule;
 import redlib.backend.annotation.NeedNoPrivilege;
 import redlib.backend.annotation.Privilege;
@@ -14,14 +17,6 @@ import redlib.backend.model.Token;
 import redlib.backend.service.utils.AdminUtils;
 import redlib.backend.utils.ThreadContextHolder;
 
-import java.lang.reflect.Method;
-
-/**
- * 描述：对API接口的请求，除了login外，都做token检查，没有token则报错
- *
- * @author lihongwen
- * @date 2020/3/9
- */
 @Component
 @Aspect
 @Slf4j

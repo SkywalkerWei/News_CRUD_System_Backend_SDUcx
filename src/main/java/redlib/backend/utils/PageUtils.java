@@ -6,12 +6,6 @@ import redlib.backend.model.Page;
 
 import java.util.Collections;
 
-/**
- * 描述：
- *
- * @author lihongwen
- * @date 2020/3/17
- */
 @Data
 public class PageUtils {
 

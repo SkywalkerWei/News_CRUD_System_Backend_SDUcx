@@ -1,22 +1,29 @@
 package redlib.backend.controller;
 
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.annotation.Resource;
 import redlib.backend.dto.NewsDTO;
 import redlib.backend.dto.NewsQueryDTO;
 import redlib.backend.model.News;
 import redlib.backend.model.Page;
-import redlib.backend.service.NewsService;
 import redlib.backend.model.Result;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
-
-import jakarta.annotation.Resource;
+import redlib.backend.service.NewsService;
 
 @Tag(name = "新闻管理", description = "新闻的增删改查接口")
 @RestController
-@RequestMapping("/api/news")
+@RequestMapping("/api/news-manager")
 public class NewsController {
     @Resource
     private NewsService newsService;
@@ -24,7 +31,6 @@ public class NewsController {
     @Operation(summary = "创建新闻")
     @PostMapping
     public Result<News> createNews(@Validated @RequestBody NewsDTO newsDTO) {
-        // TODO: 从SecurityContext中获取当前用户
         String operator = "admin";
         return Result.success(newsService.createNews(newsDTO, operator));
     }
@@ -34,7 +40,6 @@ public class NewsController {
     public Result<Void> updateNews(@Parameter(description = "新闻ID") @PathVariable Long id, 
                                  @Validated @RequestBody NewsDTO newsDTO) {
         newsDTO.setId(id);
-        // TODO: 从SecurityContext中获取当前用户
         String operator = "admin";
         newsService.updateNews(newsDTO, operator);
         return Result.success();

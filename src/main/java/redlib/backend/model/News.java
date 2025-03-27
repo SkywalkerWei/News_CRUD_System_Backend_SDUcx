@@ -1,7 +1,8 @@
 package redlib.backend.model;
 
-import lombok.Data;
 import java.time.LocalDateTime;
+
+import lombok.Data;
 
 @Data
 public class News {
@@ -9,8 +10,8 @@ public class News {
     private String title;
     private String content;
     private Long categoryId;
-    private String createBy;
-    private String updateBy;
+    private String createdBy;
+    private String updatedBy;
     private LocalDateTime createTime;
     private LocalDateTime updateTime;
 }

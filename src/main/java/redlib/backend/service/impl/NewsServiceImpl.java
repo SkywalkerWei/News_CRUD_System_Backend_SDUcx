@@ -1,20 +1,21 @@
 package redlib.backend.service.impl;
 
-import redlib.backend.dao.NewsMapper;
-import redlib.backend.dao.NewsCategoryMapper;
-import redlib.backend.dto.NewsDTO;
-import redlib.backend.dto.NewsQueryDTO;
-import redlib.backend.model.News;
-import redlib.backend.model.NewsCategory;
-import redlib.backend.model.Page;
-import redlib.backend.service.NewsService;
-import redlib.backend.exception.BusinessException;
+import java.util.List;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import jakarta.annotation.Resource;
-import java.util.List;
+import redlib.backend.dao.NewsCategoryMapper;
+import redlib.backend.dao.NewsMapper;
+import redlib.backend.dto.NewsDTO;
+import redlib.backend.dto.NewsQueryDTO;
+import redlib.backend.exception.BusinessException;
+import redlib.backend.model.News;
+import redlib.backend.model.NewsCategory;
+import redlib.backend.model.Page;
+import redlib.backend.service.NewsService;
 
 @Service
 public class NewsServiceImpl implements NewsService {
@@ -35,8 +36,8 @@ public class NewsServiceImpl implements NewsService {
         
         News news = new News();
         BeanUtils.copyProperties(newsDTO, news);
-        news.setCreateBy(operator);
-        news.setUpdateBy(operator);
+        news.setCreatedBy(operator);
+        news.setUpdatedBy(operator);
         
         newsMapper.insert(news);
         return news;
@@ -59,7 +60,7 @@ public class NewsServiceImpl implements NewsService {
         
         News news = new News();
         BeanUtils.copyProperties(newsDTO, news);
-        news.setUpdateBy(operator);
+        news.setUpdatedBy(operator);
         
         newsMapper.updateByPrimaryKey(news);
     }
@@ -82,9 +83,24 @@ public class NewsServiceImpl implements NewsService {
 
     @Override
     public Page<News> queryNews(NewsQueryDTO queryDTO) {
+        // 处理分页参数
+        if (queryDTO.getCurrent() <= 0) {
+            queryDTO.setCurrent(1);
+        }
+        if (queryDTO.getPageSize() <= 0) {
+            queryDTO.setPageSize(10);
+        }
+        
+        // 设置分页参数
+        int offset = (queryDTO.getCurrent() - 1) * queryDTO.getPageSize();
+        queryDTO.setPageNum(offset);
+        queryDTO.setOffset(offset);
+        queryDTO.setLimit(queryDTO.getPageSize());
+        
+        // 查询数据
         List<News> list = newsMapper.selectByCondition(queryDTO);
         int total = newsMapper.countByCondition(queryDTO);
         
-        return new Page<>(queryDTO.getPageNum(), queryDTO.getPageSize(), total, list);
+        return new Page<>(queryDTO.getCurrent(), queryDTO.getPageSize(), total, list);
     }
 }

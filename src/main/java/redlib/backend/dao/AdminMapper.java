@@ -1,10 +1,11 @@
 package redlib.backend.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
+
 import redlib.backend.dto.query.KeywordQueryDTO;
 import redlib.backend.model.Admin;
-
-import java.util.List;
 
 public interface AdminMapper {
     int deleteByPrimaryKey(Integer userid);

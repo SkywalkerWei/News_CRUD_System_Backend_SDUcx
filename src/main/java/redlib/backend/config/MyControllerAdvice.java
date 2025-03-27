@@ -18,12 +18,6 @@ import redlib.backend.model.ResponseData;
 
 import java.util.LinkedHashMap;
 
-/**
- * @author 李洪文
- * @description
- * @date 2019/11/18 18:11
- */
-
 @RestControllerAdvice
 @Slf4j
 public class MyControllerAdvice implements ResponseBodyAdvice<Object> {
@@ -73,7 +67,11 @@ public class MyControllerAdvice implements ResponseBodyAdvice<Object> {
             return body;
         } else if (path.contains("/swagger") || path.contains("/v3/api-docs")) {
             return body;
-        } else if ("/error".equals(path) && body instanceof LinkedHashMap map) {
+        }
+//        else if (body instanceof Result) {
+//            return body;
+//        }
+        else if ("/error".equals(path) && body instanceof LinkedHashMap map) {
             ResponseData<Object> resp = new ResponseData();
             resp.setCode(200);
             resp.setMessage((String) map.get("error"));

@@ -1,14 +1,10 @@
 package redlib.backend.service;
 
+import java.util.List;
+
 import redlib.backend.model.Token;
 import redlib.backend.vo.OnlineUserVO;
 
-import java.util.List;
-
-/**
- * @author 李洪文
- * @date 2019/11/14 10:38
- */
 public interface TokenService {
     /**
      * 用户登录，返回令牌信息
@@ -28,12 +24,18 @@ public interface TokenService {
     Token getToken(String accessToken);
 
     /**
+     * 更新令牌信息
+     *
+     * @param token 要更新的令牌
+     */
+    void updateToken(Token token);
+
+    /**
      * 登出系统
      *
      * @param accessToken 令牌token
      */
     void logout(String accessToken);
-
 
     /**
      * 获取在线用户列表

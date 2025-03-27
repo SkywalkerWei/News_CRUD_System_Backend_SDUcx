@@ -1,17 +1,17 @@
 package redlib.backend.service.impl;
 
-import redlib.backend.dao.NewsCategoryMapper;
-import redlib.backend.dao.NewsMapper;
-import redlib.backend.model.NewsCategory;
-import redlib.backend.service.NewsCategoryService;
-import redlib.backend.exception.BusinessException;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import jakarta.annotation.Resource;
-import java.util.Collections;
-import java.util.List;
+import redlib.backend.dao.NewsCategoryMapper;
+import redlib.backend.dao.NewsMapper;
+import redlib.backend.exception.BusinessException;
+import redlib.backend.model.NewsCategory;
+import redlib.backend.service.NewsCategoryService;
 
 @Service
 public class NewsCategoryServiceImpl implements NewsCategoryService {
@@ -107,7 +107,8 @@ public class NewsCategoryServiceImpl implements NewsCategoryService {
     @Override
     public List<NewsCategory> searchCategories(String name) {
         if (!StringUtils.hasText(name)) {
-            return Collections.emptyList();
+            // 当name为空时，返回所有栏目
+            return newsCategoryMapper.selectByNameLike("");
         }
         return newsCategoryMapper.selectByNameLike(name);
     }

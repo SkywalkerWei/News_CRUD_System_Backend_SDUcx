@@ -1,21 +1,15 @@
 package redlib.backend.service;
 
+import java.io.InputStream;
+import java.util.List;
 
 import org.apache.poi.ss.usermodel.Workbook;
+
 import redlib.backend.dto.DepartmentDTO;
 import redlib.backend.dto.query.DepartmentQueryDTO;
 import redlib.backend.model.Page;
 import redlib.backend.vo.DepartmentVO;
 
-import java.io.InputStream;
-import java.util.List;
-
-/**
- * 部门模块服务接口
- *
- * @author 李洪文
- * @date 2019-12-3
- */
 public interface DepartmentService {
     Page<DepartmentVO> listByPage(DepartmentQueryDTO queryDTO);
 

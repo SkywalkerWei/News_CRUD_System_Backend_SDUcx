@@ -2,11 +2,6 @@ package redlib.backend.dto;
 
 import lombok.Data;
 
-/**
- * @author 李洪文
- * @description
- * @date 2019/12/3 9:20
- */
 @Data
 public class DepartmentDTO {
     private Integer id;

@@ -1,10 +1,12 @@
 package redlib.backend.dao;
 
-import redlib.backend.model.News;
-import redlib.backend.dto.NewsQueryDTO;
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import java.util.List;
+
+import redlib.backend.dto.NewsQueryDTO;
+import redlib.backend.model.News;
 
 @Mapper
 public interface NewsMapper {
@@ -22,5 +24,5 @@ public interface NewsMapper {
     
     int updateCategoryIdBatch(@Param("oldCategoryId") Long oldCategoryId,
                             @Param("newCategoryId") Long newCategoryId,
-                            @Param("updateBy") String updateBy);
+                            @Param("updatedBy") String updatedBy);
 }

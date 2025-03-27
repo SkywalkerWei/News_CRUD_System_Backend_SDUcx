@@ -1,19 +1,15 @@
 package redlib.backend.service.utils;
 
+import java.util.Map;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.util.Assert;
+
 import redlib.backend.dto.DepartmentDTO;
 import redlib.backend.model.Department;
 import redlib.backend.utils.FormatUtils;
 import redlib.backend.vo.DepartmentVO;
 
-import java.util.Map;
-
-/**
- * @author 李洪文
- * @description
- * @date 2019/12/3 9:35
- */
 public class DepartmentUtils {
     /**
      * 规范并校验departmentDTO

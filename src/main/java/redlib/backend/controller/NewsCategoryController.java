@@ -1,19 +1,27 @@
 package redlib.backend.controller;
 
+import java.util.List;
+
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import redlib.backend.model.NewsCategory;
-import redlib.backend.service.NewsCategoryService;
-import redlib.backend.model.Result;
-import org.springframework.web.bind.annotation.*;
-
 import jakarta.annotation.Resource;
-import java.util.List;
+import redlib.backend.model.NewsCategory;
+import redlib.backend.model.Result;
+import redlib.backend.service.NewsCategoryService;
 
 @Tag(name = "新闻栏目管理", description = "新闻栏目的增删改查接口")
 @RestController
-@RequestMapping("/api/news/categories")
+@RequestMapping("/api/news-category-manager")
 public class NewsCategoryController {
     @Resource
     private NewsCategoryService newsCategoryService;

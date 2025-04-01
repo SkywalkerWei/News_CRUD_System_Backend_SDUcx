@@ -59,7 +59,7 @@ CREATE TABLE `admin_priv` (
 -- ----------------------------
 -- Records of admin_priv
 -- ----------------------------
-INSERT INTO `admin_priv` VALUES ('14', '2', 'admin', 'page');
+INSERT INTO `admin_priv` VALUES ('1', '2', 'admin', 'page');
 INSERT INTO `admin_priv` VALUES ('2', '3', 'admin', 'add');
 INSERT INTO `admin_priv` VALUES ('3', '3', 'admin', 'delete');
 

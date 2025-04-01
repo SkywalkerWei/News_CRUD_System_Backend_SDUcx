@@ -1,7 +1,14 @@
 package redlib.backend.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import redlib.backend.annotation.BackendModule;
 import redlib.backend.annotation.Privilege;
 import redlib.backend.dto.AdminDTO;
@@ -10,8 +17,6 @@ import redlib.backend.model.Page;
 import redlib.backend.service.AdminService;
 import redlib.backend.vo.AdminVO;
 import redlib.backend.vo.ModuleVO;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/admin")

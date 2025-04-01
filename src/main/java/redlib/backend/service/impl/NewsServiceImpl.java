@@ -24,7 +24,7 @@ public class NewsServiceImpl implements NewsService {
     
     @Resource
     private NewsCategoryMapper newsCategoryMapper;
-    
+
     @Override
     @Transactional
     public News createNews(NewsDTO newsDTO, String operator) {

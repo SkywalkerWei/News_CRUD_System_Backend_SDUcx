@@ -1,21 +1,13 @@
 package redlib.backend.vo;
 
-import lombok.Data;
-
 import java.util.Date;
 
-/**
- * 描述：
- *
- * @author lihongwen
- * @date 2020/4/1
- */
+import lombok.Data;
+
 @Data
 public class OnlineUserVO {
     private String accessToken;
-    /**
-     * 是否具有访问后台管理的权限
-     */
+    
     private boolean backend;
 
     private String userName;

@@ -1,7 +1,7 @@
 package redlib.backend.config;
 
-import com.alibaba.fastjson2.JSON;
-import lombok.extern.slf4j.Slf4j;
+import java.util.LinkedHashMap;
+
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -13,10 +13,12 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
+
+import com.alibaba.fastjson2.JSON;
+
+import lombok.extern.slf4j.Slf4j;
 import redlib.backend.exception.BusinessException;
 import redlib.backend.model.ResponseData;
-
-import java.util.LinkedHashMap;
 
 @RestControllerAdvice
 @Slf4j
@@ -68,9 +70,6 @@ public class MyControllerAdvice implements ResponseBodyAdvice<Object> {
         } else if (path.contains("/swagger") || path.contains("/v3/api-docs")) {
             return body;
         }
-//        else if (body instanceof Result) {
-//            return body;
-//        }
         else if ("/error".equals(path) && body instanceof LinkedHashMap map) {
             ResponseData<Object> resp = new ResponseData();
             resp.setCode(200);

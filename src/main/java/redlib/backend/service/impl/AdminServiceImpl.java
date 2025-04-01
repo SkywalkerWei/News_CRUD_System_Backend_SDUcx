@@ -1,5 +1,13 @@
 package redlib.backend.service.impl;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -8,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
+
 import redlib.backend.annotation.BackendModule;
 import redlib.backend.dao.AdminMapper;
 import redlib.backend.dao.AdminPrivMapper;
@@ -26,9 +35,6 @@ import redlib.backend.utils.ThreadContextHolder;
 import redlib.backend.vo.AdminVO;
 import redlib.backend.vo.ModuleVO;
 import redlib.backend.vo.PrivilegeVO;
-
-import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 public class AdminServiceImpl implements AdminService {

@@ -1,10 +1,22 @@
 package redlib.backend.service.impl;
 
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
+
 import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
+
 import redlib.backend.dao.DepartmentMapper;
 import redlib.backend.dto.DepartmentDTO;
 import redlib.backend.dto.query.DepartmentQueryDTO;
@@ -20,17 +32,6 @@ import redlib.backend.utils.ThreadContextHolder;
 import redlib.backend.utils.XlsUtils;
 import redlib.backend.vo.DepartmentVO;
 
-import java.io.InputStream;
-import java.util.*;
-import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Collectors;
-
-/**
- * @author 李洪文
- * @description
- * @date 2019/12/3 9:33
- */
 @Service
 public class DepartmentServiceImpl implements DepartmentService {
     @Autowired
@@ -39,12 +40,6 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Autowired
     private AdminService adminService;
 
-    /**
-     * 分页获取部门信息
-     *
-     * @param queryDTO 查询条件和分页信息
-     * @return 带分页信息的部门数据列表
-     */
     @Override
     public Page<DepartmentVO> listByPage(DepartmentQueryDTO queryDTO) {
         if (queryDTO == null) {
@@ -82,13 +77,6 @@ public class DepartmentServiceImpl implements DepartmentService {
         return new Page<>(pageUtils.getCurrent(), pageUtils.getPageSize(), pageUtils.getTotal(), voList);
     }
 
-
-    /**
-     * 新建部门
-     *
-     * @param departmentDTO 部门输入对象
-     * @return 部门编码
-     */
     @Override
     public Integer addDepartment(DepartmentDTO departmentDTO) {
         Token token = ThreadContextHolder.getToken();
@@ -118,12 +106,6 @@ public class DepartmentServiceImpl implements DepartmentService {
         return dto;
     }
 
-    /**
-     * 更新部门数据
-     *
-     * @param departmentDTO 部门输入对象
-     * @return 部门编码
-     */
     @Override
     public Integer updateDepartment(DepartmentDTO departmentDTO) {
         // 校验输入数据正确性
@@ -140,11 +122,6 @@ public class DepartmentServiceImpl implements DepartmentService {
         return department.getId();
     }
 
-    /**
-     * 根据编码列表，批量删除部门
-     *
-     * @param ids 编码列表
-     */
     @Override
     public void deleteByCodes(List<Integer> ids) {
         Assert.notEmpty(ids, "部门id列表不能为空");

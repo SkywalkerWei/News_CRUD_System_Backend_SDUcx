@@ -98,4 +98,20 @@
             updated_by = #{updatedBy}
         WHERE category_id = #{oldCategoryId}
     </update>
+
+    <!-- 统计相关查询 -->
+    <select id="getCategoryStatistics" resultType="java.util.Map">
+        SELECT 
+            nc.name as category,
+            COUNT(n.id) as count
+        FROM news n
+        JOIN news_category nc ON n.category_id = nc.id
+        GROUP BY n.category_id, nc.name
+    </select>
+
+    <select id="getDailyPublishCount" resultType="java.lang.Long">
+        SELECT COUNT(*) 
+        FROM news 
+        WHERE DATE(create_time) = #{date}
+    </select>
 </mapper>

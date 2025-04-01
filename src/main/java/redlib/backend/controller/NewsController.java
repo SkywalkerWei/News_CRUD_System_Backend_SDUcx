@@ -14,6 +14,9 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
+import redlib.backend.annotation.BackendModule;
+import redlib.backend.annotation.NeedNoPrivilege;
+import redlib.backend.annotation.Privilege;
 import redlib.backend.dto.NewsDTO;
 import redlib.backend.dto.NewsQueryDTO;
 import redlib.backend.model.News;
@@ -24,12 +27,14 @@ import redlib.backend.service.NewsService;
 @Tag(name = "新闻管理", description = "新闻的增删改查接口")
 @RestController
 @RequestMapping("/api/news-manager")
+@BackendModule({"page:页面", "update:修改", "add:创建", "delete:删除"})
 public class NewsController {
     @Resource
     private NewsService newsService;
     
     @Operation(summary = "创建新闻")
     @PostMapping
+    @Privilege("add")
     public Result<News> createNews(@Validated @RequestBody NewsDTO newsDTO) {
         String operator = "admin";
         return Result.success(newsService.createNews(newsDTO, operator));
@@ -37,6 +42,7 @@ public class NewsController {
     
     @Operation(summary = "更新新闻")
     @PutMapping("/{id}")
+    @Privilege("update")
     public Result<Void> updateNews(@Parameter(description = "新闻ID") @PathVariable Long id, 
                                  @Validated @RequestBody NewsDTO newsDTO) {
         newsDTO.setId(id);
@@ -47,6 +53,7 @@ public class NewsController {
     
     @Operation(summary = "删除新闻")
     @DeleteMapping("/{id}")
+    @Privilege("delete")
     public Result<Void> deleteNews(@Parameter(description = "新闻ID") @PathVariable Long id) {
         newsService.deleteNews(id);
         return Result.success();
@@ -54,12 +61,16 @@ public class NewsController {
     
     @Operation(summary = "获取新闻详情")
     @GetMapping("/{id}")
+    @NeedNoPrivilege
+    // @Privilege("page")
     public Result<News> getNews(@Parameter(description = "新闻ID") @PathVariable Long id) {
         return Result.success(newsService.getNews(id));
     }
     
     @Operation(summary = "查询新闻列表", description = "支持按标题、栏目、创建时间等条件分页查询")
     @GetMapping
+    @NeedNoPrivilege
+    // @Privilege("page")
     public Result<Page<News>> queryNews(@Validated NewsQueryDTO queryDTO) {
         return Result.success(newsService.queryNews(queryDTO));
     }

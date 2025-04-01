@@ -1,22 +1,17 @@
 package redlib.backend.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import redlib.backend.annotation.BackendModule;
 import redlib.backend.annotation.Privilege;
 import redlib.backend.service.TokenService;
 import redlib.backend.vo.OnlineUserVO;
 
-import java.util.List;
-
-/**
- * 描述：
- *
- * @author lihongwen
- * @date 2020/4/1
- */
 @RestController
 @RequestMapping("/api/onlineUser")
 @BackendModule({"page:页面", "kick:踢人"})

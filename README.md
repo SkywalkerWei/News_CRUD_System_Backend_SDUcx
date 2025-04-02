@@ -5,11 +5,11 @@
 ## 技术栈
 
 - JDK 17
-- 核心框架 : Spring Boot 2.7.x (基于build.gradle中的spring-boot-dependencies配置)
-- 数据持久层 : MyBatis-Plus 3.5.3.1 (结合mybatis-generator-core实现ORM)
-- 安全框架 : Spring Security 5.7.x (通过security-test模块验证)
-- API文档 : SpringDoc OpenAPI 1.6.14 (集成swagger-ui)
-- 构建工具 : Gradle 8.1.3 (Wrapper配置验证)
+- 核心框架 : Spring Boot 2.7.x （基于build.gradle中的spring-boot-dependencies配置）
+- 数据持久层 : MyBatis-Plus 3.5.3.1 （结合mybatis-generator-core实现ORM）
+- 安全框架 : Spring Security 5.7.x （通过security-test模块验证）
+- API文档 : SpringDoc OpenAPI 1.6.14 （集成swagger-ui）
+- 构建工具 : Gradle 8.1.3 （Wrapper配置验证）
 
 ### 接口层(Controller)
 
@@ -45,3 +45,9 @@
 
 - 只有授权的管理员可以修改、新建、删除项
 - 一般用户只能搜索和查看内容
+
+## 更新日志
+
+### 2025-04-02
+
+删除了大量没有被使用的冗余代码，删除了大量弃用的模块，优化代码结构

@@ -4,10 +4,27 @@
 
 ## 技术栈
 
-- Spring Boot 3
 - JDK 17
-- MyBatis
-- OpenAPI 3
+- 核心框架 : Spring Boot 2.7.x (基于build.gradle中的spring-boot-dependencies配置)
+- 数据持久层 : MyBatis-Plus 3.5.3.1 (结合mybatis-generator-core实现ORM)
+- 安全框架 : Spring Security 5.7.x (通过security-test模块验证)
+- API文档 : SpringDoc OpenAPI 1.6.14 (集成swagger-ui)
+- 构建工具 : Gradle 8.1.3 (Wrapper配置验证)
+
+### 接口层(Controller)
+
+- 基于Spring MVC实现RESTful API
+- 统一异常处理
+
+### 业务层(Service)
+
+- 事务管理@Transactional
+- 业务逻辑组合
+
+### 持久层(DAO)
+
+- MyBatis动态SQL
+- 分页插件配置
 
 ## 实现功能
 

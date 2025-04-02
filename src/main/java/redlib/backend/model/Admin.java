@@ -1,8 +1,8 @@
 package redlib.backend.model;
 
-import lombok.Data;
-
 import java.util.Date;
+
+import lombok.Data;
 
 @Data
 public class Admin {
@@ -17,8 +17,6 @@ public class Admin {
     private Boolean enabled;
 
     private String password;
-
-    private String department;
 
     private String phone;
 

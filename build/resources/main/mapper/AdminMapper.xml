@@ -8,7 +8,6 @@
         <result column="sex" property="sex" jdbcType="TINYINT"/>
         <result column="enabled" property="enabled" jdbcType="BIT"/>
         <result column="password" property="password" jdbcType="VARCHAR"/>
-        <result column="department" property="department" jdbcType="VARCHAR"/>
         <result column="phone" property="phone" jdbcType="VARCHAR"/>
         <result column="email" property="email" jdbcType="VARCHAR"/>
         <result column="created_at" jdbcType="TIMESTAMP" property="createdAt"/>
@@ -18,7 +17,7 @@
     </resultMap>
     <sql id="Base_Column_List">
         id
-        , user_code, name, sex, enabled, password, department, phone, email, created_at, created_by, updated_at, updated_by
+        , user_code, name, sex, enabled, password, phone, email, created_at, created_by, updated_at, updated_by
     </sql>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
@@ -52,8 +51,7 @@
                            enabled, password, department,
                            phone, email, created_by, updated_by)
         values (#{userCode,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{sex,jdbcType=TINYINT},
-                #{enabled,jdbcType=BIT}, #{password,jdbcType=VARCHAR}, #{department,jdbcType=VARCHAR},
-                #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{createdBy,jdbcType=INTEGER},
+                #{enabled,jdbcType=BIT}, #{password,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{createdBy,jdbcType=INTEGER},
                 #{updatedBy,jdbcType=INTEGER})
     </insert>
 
@@ -65,7 +63,6 @@
         <if test="password != null">
             password = #{password,jdbcType=CHAR},
         </if>
-        department = #{department,jdbcType=VARCHAR},
         phone = #{phone,jdbcType=VARCHAR},
         email = #{email,jdbcType=VARCHAR},
         updated_by = #{updatedBy,jdbcType=INTEGER}
@@ -90,7 +87,7 @@
         from admin
         <where>
             <if test="queryDTO.keyword != null">
-                ( name like #{queryDTO.keyword} or user_code like #{queryDTO.keyword} or department like
+                ( name like #{queryDTO.keyword} or user_code like #{queryDTO.keyword} like
                 #{queryDTO.keyword} )
             </if>
         </where>
@@ -108,7 +105,7 @@
         select count(*) from admin
         <where>
             <if test="queryDTO.keyword != null">
-                ( name like #{queryDTO.keyword} or user_code like #{queryDTO.keyword} or department like
+                ( name like #{queryDTO.keyword} or user_code like #{queryDTO.keyword} like
                 #{queryDTO.keyword} )
             </if>
         </where>

@@ -60,7 +60,6 @@ public class TokenServiceImpl implements TokenService {
         token.setAccessToken(makeToken());
         token.setUserId(admin.getId());
         token.setLastAction(new Date());
-        token.setDepartment(admin.getDepartment());
         token.setSex(admin.getSex());
         token.setIpAddress(ipAddress);
         token.setUserCode(userId);

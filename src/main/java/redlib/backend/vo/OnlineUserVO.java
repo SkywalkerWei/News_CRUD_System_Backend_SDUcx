@@ -24,8 +24,6 @@ public class OnlineUserVO {
 
     private String sex;
 
-    private String department;
-
     private String ipAddr;
 
     private String os;

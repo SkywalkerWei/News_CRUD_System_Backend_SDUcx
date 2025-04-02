@@ -18,8 +18,6 @@ public class AdminVO {
 
     private String password;
 
-    private String department;
-
     private String phone;
 
     private String email;

@@ -48,8 +48,7 @@
     </delete>
     <insert id="insert" parameterType="redlib.backend.model.Admin" keyProperty="id" useGeneratedKeys="true">
         insert into admin (user_code, name, sex,
-                           enabled, password, department,
-                           phone, email, created_by, updated_by)
+                           enabled, password, phone, email, created_by, updated_by)
         values (#{userCode,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{sex,jdbcType=TINYINT},
                 #{enabled,jdbcType=BIT}, #{password,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{createdBy,jdbcType=INTEGER},
                 #{updatedBy,jdbcType=INTEGER})
